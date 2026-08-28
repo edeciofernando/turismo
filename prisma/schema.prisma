@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Viagem {
+  id           Int           @id @default(autoincrement())
+  destino      String        @db.VarChar(60) 
+  transporte   String        @db.VarChar(20)
+  preco        Decimal       @db.Decimal(10, 2)
+  dataSaida    DateTime
+  dataRetorno  DateTime
+  roteiro      String?       @db.Text
+  @@map("viagens")
+}
